@@ -2,25 +2,50 @@
 
 {% block content %}
 
-{{ error }}
+<h3 class="container text-center">{{ todo.title }}</h3>
 
-<h1>{{ todo.title }}</h1>
-<br>
+<div class="row justify-content-center mt-5">
+	<div class="col-md-5 w-75">
+		{% if error %}
+		<div class="alert alert-danger" role="alert">
+			{{ error }}
+		</div>
+		{% endif %}
 
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p}}
-	<button type="submit">Update</button>
-</form>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="title" style="color: white;">Title</label>
+				<input type="text" name="title" class="form-control" id="title" value="{{ todo.title }}" required>
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="memo" style="color: white;">Description</label>
+				<textarea name="memo" rows="5" class="form-control" id="memo">{{ todo.memo }}</textarea>
+			</div>
+			<br>
+			<div class="form-group form-check">
+				<input type="checkbox" name="important" id="important" {% if todo.important %}checked {% endif %}
+					class="form-check-input">
+				<label class="form-check-label" for="important" style="color: white;">Important</label>
+			</div>
+			<br>
+			<div style="display: flex; justify-content: center; align-items: center;">
+				<button type="submit" class="btn btn-primary" style="width: 8rem">Save</button>
+			</div>
+		</form>
 
-<form method="POST" action="{% url 'completetodo' todo.id %}">
-	{% csrf_token %}
-	<button type="submit">Complete</button>
-</form>
-
-<form method="POST" action="{% url 'deletetodo' todo.id %}">
-	{% csrf_token %}
-	<button type="submit">Delete</button>
-</form>
+		<div style="display: flex; justify-content: center; align-items: center;">
+			<form method="POST" action="{% url 'completetodo' todo.id %}">
+				{% csrf_token %}
+				<button type="submit" class="btn btn-success" style="margin: 1rem; width: 8rem">Complete</button>
+			</form>
+			<form method="POST" action="{% url 'deletetodo' todo.id %}">
+				{% csrf_token %}
+				<button type="submit" class="btn btn-danger" style="margin: 1rem; width: 8rem">Delete</button>
+			</form>
+		</div>
+	</div>
+</div>
 
 {% endblock %}

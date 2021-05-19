@@ -2,14 +2,39 @@
 
 {% block content %}
 
-<h1>Login</h1>
-<br>
-<h2>{{ error }}</h2>
-<br>
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">Login</button>
-</form>
+<h3 class="container text-center">Login</h3>
+
+<div class="row justify-content-center mt-5">
+	<div class="col-md-6">
+		{% if error %}
+		<div class="alert alert-danger" role="alert">
+			{{ error }}
+		</div>
+		{% endif %}
+		<hr>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="username" style="color: white;">Username</label>
+				<input type="text" name="username" class="form-control" id="username">
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="password" style="color: white;">Password</label>
+				<input type="password" name="password" class="form-control" id="password">
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">Login</button>
+		</form>
+		<hr>
+		<br>
+		<div class="text-center" style="color: white;">
+			New Here?
+			<a href="{% url 'signupuser' %}" style="color: mediumaquamarine;">
+				SignUp
+			</a>
+		</div>
+	</div>
+</div>
 
 {% endblock %}

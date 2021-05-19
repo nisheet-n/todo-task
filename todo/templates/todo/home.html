@@ -2,7 +2,74 @@
 
 {% block content %}
 
-<h1>Home</h1>
+{% if user.is_authenticated %}
+<h1 class="container text-center">Welcome {{user.username}}</h1>
 <br>
+
+<div class="container">
+	<br>
+	<div class="d-grid gap-3 col-5 mx-auto">
+		<a role="button" class="btn btn-dark btn-lg" href="{% url 'createtodo' %}">
+			Create ToDo
+		</a>
+		<a role="button" class="btn btn-info btn-lg" href="{% url 'currenttodo' %}">
+			Current ToDo
+		</a>
+		<a role="button" class="btn btn-success btn-lg" href="{% url 'completedtodo' %}">
+			Completed ToDo
+		</a>
+	</div>
+	<br><br>
+	<div class="d-grid gap-2 col-4 mx-auto">
+		<a role="button" class="btn btn-warning btn-lg" href="{% url 'signupuser' %}">
+			SignUp with another account
+		</a>
+		<form action="{% url 'logoutuser' %}" method="POST" class="text-center">
+			{% csrf_token %}
+			<button class="btn btn-danger btn-lg" type="submit">Logout</button>
+		</form>
+	</div>
+</div>
+
+<style>
+	.btn {
+		border-color: white;
+		border-width: 0.1rem;
+	}
+</style>
+<br>
+
+{% else %}
+<h1 class="container text-center">ToDo Task</h1>
+<br>
+
+<div class="row justify-content-center mt-5">
+	<div class="col-md-7 text-center">
+
+		<p style="color: white;">
+			A ToDo website made by Nisheet having an Authentication system
+			<br>
+			Features like updating and deleting ToDos are just fun!
+			<br><br>
+		</p>
+		<p style="color: mediumaquamarine; font-size: large;">Frameworks Used:</p>
+		<ul class="list-group" style="list-style-type: none; color: mediumaquamarine;">
+			<li>Django</li>
+			<li>BootStrap</li>
+			<li>Git</li>
+			<li>Python and HTML</li>
+		</ul>
+		<br>
+		<p style="color: white;">
+			"I love deadlines. I love the whooshing noise they make as they go by."
+			<br>
+		</p>
+		<br>
+		<a role="button" class="btn btn-primary btn-lg" href="{% url 'signupuser' %}">Start</a>
+		<br>
+	</div>
+</div>
+
+{% endif %}
 
 {% endblock %}

@@ -1,15 +1,43 @@
-{% extends 'todo/base.html' %}
+{% extends "todo/base.html" %}
 
 {% block content %}
+<h3 class="container text-center">Sign Up</h3>
 
-<h1>Sign Up!</h1>
-<br>
-<h2>{{ error }}</h2>
-<br>
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">Sign Up!</button>
-</form>
-
+<div class="row justify-content-center mt-5">
+	<div class="col-md-6">
+		{% if error %}
+		<div class="alert alert-danger" role="alert">
+			{{ error }}
+		</div>
+		{% endif %}
+		<hr>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="username" style="color: white;">Username</label>
+				<input type="text" name="username" class="form-control" id="username"
+					aria-describedby="usernameHelp">
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="password1" style="color: white;">Password</label>
+				<input type="password" name="password1" class="form-control" id="password1">
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="password2" style="color: white;">Confirm Password</label>
+				<input type="password" name="password2" class="form-control" id="password2">
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">Sign Up</button>
+		</form>
+		<hr>
+		<div class="text-center" style="color: white;">
+			Already have an account?
+			<a href="{% url 'loginuser' %}" style="color: mediumaquamarine;">
+				Login here
+			</a>
+		</div>
+	</div>
+</div>
 {% endblock %}
