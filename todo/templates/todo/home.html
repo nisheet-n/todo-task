@@ -13,10 +13,10 @@
 			Create ToDo
 		</a>
 		<a role="button" class="btn btn-info btn-lg" href="{% url 'currenttodo' %}">
-			Current ToDo
+			Current ToDos
 		</a>
 		<a role="button" class="btn btn-success btn-lg" href="{% url 'completedtodo' %}">
-			Completed ToDo
+			Completed ToDos
 		</a>
 	</div>
 	<br><br>
@@ -30,13 +30,6 @@
 		</form>
 	</div>
 </div>
-
-<style>
-	.btn {
-		border-color: white;
-		border-width: 0.1rem;
-	}
-</style>
 <br>
 
 {% else %}
@@ -47,9 +40,9 @@
 	<div class="col-md-7 text-center">
 
 		<p style="color: white;">
-			A ToDo website made by Nisheet having an Authentication system
+			A ToDo website made by Nisheet having an Authentication System
 			<br>
-			Features like updating and deleting ToDos are just fun!
+			Features like creating, updating and deleting ToDos are just fun!
 			<br><br>
 		</p>
 		<p style="color: mediumaquamarine; font-size: large;">Frameworks Used:</p>

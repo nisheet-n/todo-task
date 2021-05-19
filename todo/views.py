@@ -23,7 +23,7 @@ def signupuser(request):
                     user=User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                     user.save()
                     login(request, user)
-                    return redirect('currenttodo')
+                    return redirect('home')
 
                except IntegrityError:
                     return render(request, 'todo/signupuser.html', {'form': UserCreationForm(), 'error': 'Username Already Taken!'})
@@ -42,7 +42,7 @@ def loginuser(request):
                return render(request, 'todo/loginuser.html', {'form': AuthenticationForm(), 'error': 'Username and Password did not match'})
           else:
                login(request, user)
-               return redirect('currenttodo')
+               return redirect('home')
 
 
 @login_required
