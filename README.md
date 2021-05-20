@@ -1,6 +1,6 @@
 # ToDo Task
 
-ToDo application where you can create, upadate or delete your ToDos. 📒
+ToDo application where you can create, update or delete your ToDos. 📒
 <br>
 Also has a cool Authentication system! 
 <br>
